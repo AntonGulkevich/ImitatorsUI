@@ -1,0 +1,150 @@
+﻿<UserControl x:Class="ImitatorBrowserUi.Pages.WellcomePage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ImitatorBrowserUi.Pages"
+             xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:base="clr-namespace:ImitatorBrowserUi.Base"
+             mc:Ignorable="d" d:DataContext="{d:DesignInstance local:WellcomePageViewModel}">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type GroupBox}" BasedOn="{StaticResource QuickGroupBox}"/>
+        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource QuickStartButton}"/>
+    </UserControl.Resources>
+    <Grid ShowGridLines="false">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition Height="0.5*"></RowDefinition>
+            <RowDefinition Height="3*" ></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="3*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Column="1" 
+               Grid.Row="1" 
+               VerticalAlignment="Top"
+               HorizontalAlignment="Center"
+               FontStyle="Normal"
+               FontWeight="Bold"
+               FontSize="90"
+               FontFamily="Futura"
+               Margin="0, -15, 0, 0">
+            <TextBlock Text="Imitators">
+                <TextBlock.TextEffects>
+                    <TextEffect PositionStart="0" PositionCount="1" Foreground="#4889f4"/>
+                    <TextEffect PositionStart="1" PositionCount="2" Foreground="#ea4335"/>
+                    <TextEffect PositionStart="2" PositionCount="3" Foreground="#fbbc05"/>
+                    <TextEffect PositionStart="3" PositionCount="4" Foreground="#4285f4"/>
+                    <TextEffect PositionStart="4" PositionCount="5" Foreground="#34a853"/>
+                    <TextEffect PositionStart="5" PositionCount="6" Foreground="#ea4335"/>
+                    <TextEffect PositionStart="6" PositionCount="7" Foreground="#fbbc05"/>
+                    <TextEffect PositionStart="7" PositionCount="8" Foreground="#4285f4"/>
+                    <TextEffect PositionStart="8" PositionCount="9" Foreground="#34a853"/>
+                </TextBlock.TextEffects>
+            </TextBlock>
+        </Label>
+        <ComboBox material:HintAssist.Hint="Поиск среди имитаторов..."
+                  Grid.Column="1" Grid.Row="2"
+                  Margin="10, 0, 10, 0"
+                  HorizontalAlignment="Stretch"
+                  IsEditable="True"
+                  ItemsSource="{Binding TestListForSearch}"
+                  SelectedIndex="{Binding SelectedItem}">
+        </ComboBox>
+        <ItemsControl ItemsSource="{Binding MyQuickStartViewModel.QuickStartItems}"
+                      Grid.Column="1" 
+                      Grid.Row="3" 
+                      VerticalAlignment="Top" 
+                      Margin="0, 16, 0 , 0">
+            <ItemsControl.Resources>
+
+            </ItemsControl.Resources>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate DataType="{x:Type base:ImitatorHeader}">
+                    <Button Command="{Binding MyCommand}" Height="auto" Width="auto" x:Name="ButtonMain" >
+                        <Button.Content>
+                            <StackPanel Margin="-20, 0, -10, 0" VerticalAlignment="Top" Orientation="Vertical">
+                                <!--<DockPanel.Resources>
+                                        <Style TargetType="DockPanel" x:Key="FadingContent">
+                                            <Setter Property="Opacity" Value="0"></Setter>
+                                            <Setter Property="Name" Value="Dock1"></Setter>
+                                            <Style.Triggers>                                                
+                                                -->
+                                <!--<EventTrigger RoutedEvent="DockPanel.MouseEnter" >
+                                                    <BeginStoryboard Name="qwe">
+                                                        <Storyboard >
+                                                            <DoubleAnimation BeginTime="0:0:0" Duration="0:0:0.215" To="1" Storyboard.TargetProperty="Opacity"/>
+                                                        </Storyboard>
+                                                    </BeginStoryboard>
+                                                </EventTrigger>
+                                                <EventTrigger RoutedEvent="DockPanel.MouseLeave">
+                                                    <BeginStoryboard Name="qwer">
+                                                        <Storyboard >
+                                                            <DoubleAnimation BeginTime="0:0:0" Duration="0:0:0.215" To="0.0" Storyboard.TargetProperty="Opacity"/>
+                                                        </Storyboard>
+                                                    </BeginStoryboard>
+                                                </EventTrigger>-->
+                                <!--
+                                                <Trigger Property="IsMouseOver" Value="true">
+                                                    <Setter Property="Opacity" Value="1"/>
+                                                </Trigger>
+                                                <Trigger Property="IsMouseOver" Value="false">
+                                                    <Setter Property="Opacity" Value="0"/>
+                                                </Trigger>                                                
+                                                -->
+                                <!--<MultiDataTrigger>
+                                                    <MultiDataTrigger.Conditions>
+                                                        <Condition  Property="IsMouseOver" Value="false"/>
+                                                        <Condition Binding="{Binding IsMouseOver,ElementName=ButtonMain}" Value="true"/>
+                                                    </MultiDataTrigger.Conditions>
+                                                    <MultiDataTrigger.Setters>
+                                                        <Setter Property="Opacity" Value="1"/>
+                                                    </MultiDataTrigger.Setters>
+                                                </MultiDataTrigger>
+                                                <MultiDataTrigger>
+                                                    <MultiDataTrigger.Conditions>
+                                                        <Condition Binding="{Binding IsMouseOver, ElementName=Dock1}" Value="false"/>
+                                                        <Condition Binding="{Binding IsMouseOver,ElementName=ButtonMain}" Value="false"/>
+                                                    </MultiDataTrigger.Conditions>
+                                                    <MultiDataTrigger.Setters>
+                                                        <Setter Property="Opacity" Value="0"/>
+                                                    </MultiDataTrigger.Setters>
+                                                </MultiDataTrigger>-->
+                                <!--
+                                            </Style.Triggers>
+                                        </Style>
+                                    </DockPanel.Resources>-->
+                                <DockPanel >
+                                    <DockPanel   DockPanel.Dock="Right" Background="Transparent">
+                                        <material:PackIcon Kind="Close" DockPanel.Dock="Right"  Style="{StaticResource QuickStartPackIcon}"/>
+                                    </DockPanel>
+                                    <DockPanel   DockPanel.Dock="Right" Background="Transparent">
+                                        <material:PackIcon Kind="LockOutline" DockPanel.Dock="Right" Style="{StaticResource QuickStartPackIcon}"/>
+                                    </DockPanel>
+
+                                    <Label  Content="{Binding ImitatorName}" 
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Top"
+                                            FontWeight="Normal"
+                                            Margin="5, -3, 0, 0"/>
+                                </DockPanel>
+                                <Image  Source="{Binding ImitatorImageSource}"
+                                        RenderOptions.BitmapScalingMode="Fant"
+                                        Margin="5, 0, -3, 0"/>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Rows="2" Columns="4"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+    </Grid>
+</UserControl>

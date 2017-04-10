@@ -1,0 +1,47 @@
+﻿<Application x:Class="ImitatorBrowserUi.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:ImitatorBrowserUi"
+             xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
+             xmlns:common="clr-namespace:ImitatorBrowserUi.Pages"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Teal.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Cyan.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Dragablz;component/Themes/materialdesign.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Dragablz;component/Themes/Generic.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml" />
+                <ResourceDictionary Source="Themes/Button.xaml"/>
+                <ResourceDictionary Source="Themes/Separator.xaml"/>
+                <ResourceDictionary Source="Themes/Card.xaml"/>
+                <ResourceDictionary Source="Themes/GroupBox.xaml"/>
+                <ResourceDictionary Source="Themes/Icon.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="{x:Type dragablz:TabablzControl}" BasedOn="{StaticResource {x:Type dragablz:TabablzControl}}">
+                <Setter Property="NewItemFactory" Value="{x:Static common:WellcomePageViewModel.NewItemFactory}" />
+                <Setter Property="ItemContainerStyle" Value="{StaticResource TrapezoidDragableTabItemStyle}" />
+                <Setter Property="AdjacentHeaderItemOffset" Value="-12" />
+                <Setter Property="ShowDefaultAddButton" Value="True" />
+                <Setter Property="ShowDefaultCloseButton" Value="True" />
+                <Setter Property="HeaderItemTemplate">
+                    <Setter.Value>
+                        <DataTemplate DataType="{x:Type common:TabContent}">
+                            <TextBlock Text="{Binding Header}" ToolTip="This is a tool tip"/>
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="ContentTemplate">
+                    <Setter.Value>
+                        <DataTemplate DataType="{x:Type common:TabContent}">
+                            <ContentPresenter Margin="4" Content="{Binding Content}" />
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

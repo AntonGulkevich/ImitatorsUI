@@ -1,0 +1,62 @@
+﻿<dragablz:DragablzWindow x:Class="ImitatorBrowserUi.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ImitatorBrowserUi"
+        xmlns:dragablz="http://dragablz.net/winfx/xaml/dragablz"
+        xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:pages="clr-namespace:ImitatorBrowserUi.Pages"
+        xmlns:dockablz="http://dragablz.net/winfx/xaml/dockablz"
+        mc:Ignorable="d"
+        Title="" Height="750" Width="825"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.FontWeight="Medium"
+        TextElement.FontSize="14"
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
+        BorderThickness="1">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <dragablz:TabablzControl ItemsSource="{Binding TabContents}"
+                                 FontWeight="Normal"
+                                 FontFamily="Roboto"
+                                 FontSize="14"
+                                 x:Name="InitialTabablzControl">
+            <dragablz:TabablzControl.InterTabController>
+                <dragablz:InterTabController InterTabClient="{Binding InterTabClient}" />
+            </dragablz:TabablzControl.InterTabController>
+            <dragablz:TabablzControl.HeaderPrefixContent>
+                <StackPanel Height="25" Width="25">
+                    <material:PopupBox PopupMode="Click" Style="{StaticResource MaterialDesignPopupBox}" Height="25" Width="25" Margin="0" Padding="0">
+                        <StackPanel Margin="0" Width="220">
+                            <StackPanel.Resources>
+                                <Style TargetType="{x:Type Button}" BasedOn="{StaticResource CustomButtonMatDes}"/>
+                                <Style TargetType="{x:Type Separator}" BasedOn="{StaticResource PopupBoxSeparator}"/>
+                            </StackPanel.Resources>
+                            <Button Content="Новая вкладка"/>
+                            <Button Content="Дублировать"/>
+                            <Separator/>
+                            <Button Content="Закрыть вкладку"/>
+                            <Button Content="Закрыть вкладки справа"/>
+                            <Button Content="Закрыть вкладки слева"/>
+                            <Button Content="Закрыть все вкладки"/>
+                            <Separator/>
+                            <Button Content="Открыть закрытую вкладку"/>
+                        </StackPanel>
+                    </material:PopupBox>
+                </StackPanel>
+            </dragablz:TabablzControl.HeaderPrefixContent>
+            <dragablz:TabablzControl.HeaderSuffixContent>
+                <StackPanel Width="100">
+                </StackPanel>
+            </dragablz:TabablzControl.HeaderSuffixContent>
+        </dragablz:TabablzControl>
+    </Grid>
+</dragablz:DragablzWindow>
